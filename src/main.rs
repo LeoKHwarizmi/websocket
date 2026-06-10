@@ -6,13 +6,13 @@ use axum::{
 };
 use std::net::SocketAddr;
 
-mod terminal; // ⭐ NEW: import terminal.rs
+mod terminal;
 
 #[tokio::main]
 async fn main() {
     let app = Router::new()
-        .route("/ws", get(ws_handler))                       // your original
-        .route("/terminal", get(terminal::terminal_handler)); // ⭐ NEW: second websocket
+        .route("/ws", get(ws_handler))                      
+        .route("/terminal", get(terminal::terminal_handler));
 
     let port = std::env::var("PORT").unwrap_or("10000".into());
     let addr: SocketAddr = format!("0.0.0.0:{}", port).parse().unwrap();
