@@ -10,6 +10,7 @@ mod terminal;
 
 #[tokio::main]
 async fn main() {
+    println!("=== VERSION 1.0 ===");
 let app = Router::new()
     .route("/", get(|| async { "OK" }))
     .route("/ws", get(ws_handler))
