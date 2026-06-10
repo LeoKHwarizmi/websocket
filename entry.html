@@ -1,4 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>WebSocket Test</h1>
+
 <script>
-const ws = new WebSocket("wss://your-service.onrender.com/ws");
-ws.onmessage = (msg) => console.log(msg.data);
+const ws = new WebSocket("wss://websocket-f5e6.onrender.com/ws");
+
+// When connected
+ws.onopen = () => {
+    console.log("Connected!");
+
+    // Send a message to the server (same as Python)
+    ws.send("hello");
+};
+
+// When receiving a message
+ws.onmessage = (msg) => {
+    console.log("Server:", msg.data);
+};
 </script>
+
+</body>
+</html>

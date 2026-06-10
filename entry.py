@@ -1,7 +1,11 @@
-import websockets, asyncio
+import websockets
+import asyncio
 
 async def test():
-    ws = await websockets.connect("wss://your-service.onrender.com/ws")
-    print(await ws.recv())
+    uri = "wss://websocket-f5e6.onrender.com/ws"
+    async with websockets.connect(uri) as ws:
+        print(await ws.recv())  # Hello World
+        await ws.send("hello")
+        print(await ws.recv())  # You said: hello
 
 asyncio.run(test())
