@@ -11,6 +11,9 @@ async fn run_terminal(mut socket: WebSocket) {
 
     while let Some(Ok(msg)) = socket.recv().await {
         if let Message::Text(cmd) = msg {
+            if cmd.trim().is_empty() {
+                continue;
+            }
             let output = run_command(&cmd).await;
             let cleaned = output.trim().to_string();
             let _ = socket.send(Message::Text(cleaned)).await;
